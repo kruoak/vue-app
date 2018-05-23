@@ -1,5 +1,5 @@
 <template>
-  <div>Hello world</div>
+  <div>Hello world chaiya phum</div>
 </template>
 <script>
 export default {
