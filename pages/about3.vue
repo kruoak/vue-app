@@ -1,3 +1,5 @@
+ไฟล์ about.vue
+
 <template>
   <div>
     <h1 v-if="ok">About <i>{{ newName }}</i></h1>
@@ -5,8 +7,8 @@
     <input :value="name" type="text"><br>
     <input v-model="name" type="text"><br>
     <input v-model="name" type="text"><br>
-    <button @click="doSave">SAVE</button><br>
-    <button @click="doAdd">Add Member</button>
+    <button @click="doSave">SAVE</button>
+    <button @click="doAdd">ADD MEMBER</button>
     <table>
       <thead>
         <tr>
@@ -17,13 +19,19 @@
       </thead>
       <tbody>
         <tr
-          v-for="mem in members" :key="mem.id"
-          :class="{gray: mem.id % 2 === 0}"
+          v-for="(mem, i) in members" :key="mem.id"
+          :class="{gray: mem.id % 2}"
           class="text"
         >
-          <td>{{ mem.id }}</td>
+          <td>{{ i + 1 }}</td>
           <td>{{ mem.name }}</td>
           <td>{{ mem.org }}</td>
+        </tr>
+        <tr v-for="(item, k) in {id: 1, name: 'Somsak'}" :key="k" >
+          <td>{{ k }} = {{ item }}</td>
+        </tr>
+        <tr v-for="i in 10" :key="i">
+          <td>{{ i + 10 }}</td>
         </tr>
       </tbody>
     </table>
@@ -43,7 +51,6 @@ export default {
       ],
     }
   },
-
   computed: {
     upperName() {
       return this.name.toUpperCase()
@@ -70,10 +77,8 @@ export default {
       })
     },
   },
-
 }
 </script>
-
 <style>
 .text {
   color: blue;

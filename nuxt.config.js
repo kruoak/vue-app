@@ -30,6 +30,8 @@ module.exports = {
   ],
   loading: { color: '#3B8070' },
   manifest: {
+    name: 'check-App-ctc',
+    short_name: 'kruoak',
     theme_color: '#3B8070',
   },
   head: {

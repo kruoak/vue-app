@@ -1,49 +1,46 @@
+ไฟล์ student-list.vue
+
 <template>
-  <v-container>
-    <v-layout column>
-      <v-flex><v-select v-model="room" :items="roomList"/></v-flex>
-      <v-flex>
-        <v-data-table
-          :headers="headers"
-          :items="students2"
-          class="elevation-1"
-        >
-          <template slot="items" slot-scope="props">
-            <td>{{ props.item.code }}</td>
-            <td>{{ props.item.name }}</td>
-            <td>{{ props.item.room }}</td>
-          </template>
-        </v-data-table>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <div>
+    <div>
+      <select v-model="room">
+        <option v-for="r in roomList" :key="r" :value="r">ห้อง {{ r }}</option>
+      </select>
+      <v-radio-group v-model="room">
+        <v-radio
+          v-for="n in roomList"
+          :key="n"
+          :label="`ห้อง ${n}`"
+          :value="n"
+        />
+      </v-radio-group>
+      <v-btn @click="doSave">SAVE</v-btn>
+    </div>
+    <table>
+      <tr>
+        <td>รหัส</td>
+        <td>ชื่อ</td>
+        <td>ห้อง</td>
+      </tr>
+      <tr v-for="st in students2" :key="st.code">
+        <td>{{ st.code }}</td>
+        <td>{{ st.name }}</td>
+        <td>{{ st.room }}</td>
+      </tr>
+    </table>
+  </div>
 </template>
 <script>
 export default {
   data() {
-    let students = []
-    for (let i = 1; i <= 100; i++) {
-      students.push({
-        code: ('' + i).padStart(4, '0'),
-        name: `Name${i}`,
-        room: '' + Math.ceil(i / 30),
-      })
-    }
     return {
-      students,
       room: '3',
-      headers: [
-        {
-          text: 'รหัส',
-          align: 'left',
-          value: 'code',
-        },
-        { text: 'ชื่อ - นามสกุล', value: 'name' },
-        { text: 'ห้อง', value: 'room' },
-      ],
     }
-  },
+  }, // data
   computed: {
+    students() {
+      return this.$store.state.students
+    },
     roomList() {
       // let out = []
       // for (let i = 0; i < this.students.length; i++) {
@@ -79,6 +76,16 @@ export default {
       // }
       // return out
       return this.students.filter(st => st.room === this.room)
+    },
+  }, // computed
+  methods: {
+    async doSave() {
+      let res = await this.$axios.post('/student/save', { code: '', name: '', birth: '' })
+      if (res.data.ok) {
+        // SAVE สำเร็จ
+      } else {
+        // SAVE ไม่เสร็จ
+      }
     },
   },
 }

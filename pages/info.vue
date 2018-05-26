@@ -28,9 +28,9 @@ export default {
       return tmp[0] + ' ' + tmp[1].substr(0, 1)
     },
   },
-   methods: {
+  methods: {
     doSave() {
-      this.name += '*';
+      this.name += '*'
     },
   },
 

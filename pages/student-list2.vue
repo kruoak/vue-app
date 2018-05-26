@@ -21,16 +21,16 @@
 <script>
 export default {
   data() {
-    let students = []
-    for (let i = 1; i <= 100; i++) {
-      students.push({
-        code: ('' + i).padStart(4, '0'),
-        name: `Name${i}`,
-        room: '' + Math.ceil(i / 30),
-      })
-    }
+    // let students = []
+    // for (let i = 1; i <= 100; i++) {
+    //   students.push({
+    //     code: ('' + i).padStart(4, '0'),
+    //     name: `Name${i}`,
+    //     room: '' + Math.ceil(i / 30),
+    //   })
+    // }
     return {
-      students,
+      //students,  โหลดมาจากหน้าอื่นๆ
       room: '3',
       headers: [
         {
@@ -44,6 +44,10 @@ export default {
     }
   },
   computed: {
+    students() {
+      return this.$store.state.students
+    },
+
     roomList() {
       // let out = []
       // for (let i = 0; i < this.students.length; i++) {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Chat room</h1>
+    <h1>Chat room {{data1}}</h1>
     <div>
       <v-text-field v-model="name" label="ชื่อ"/>
       <v-text-field v-model="text" label="ข้อความ"/>
@@ -17,6 +17,7 @@
 export default {
   data() {
     return {
+      data1: 'xxx',
       name: '',
       text: '',
       msg: [],
@@ -24,6 +25,8 @@ export default {
   }, // data
   created() {
     this.$socket.subscribe('room39', this.onMsg)
+    this.$socket.subscribe('lotto', this.onLotto)
+    
   },
   beforeDestroy() {
     this.$socket.unsubscribe('room39')
@@ -37,6 +40,11 @@ export default {
     },
     onMsg(data) {
       this.msg.unshift(data)
+      
+    },
+     onLotto(data) {
+      console.log(data)
+      this.data1 = data
     },
   }, // methods
 }
