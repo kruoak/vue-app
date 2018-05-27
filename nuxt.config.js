@@ -53,6 +53,7 @@ module.exports = {
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/icons/favicon.png' },
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/icons/favicon.png' },
       { rel: 'apple-touch-icon', href: '/icons/favicon.png' },
+      { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.12/css/all.css' },
     ],
   },
 }

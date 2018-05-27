@@ -1,43 +1,53 @@
 <template>
-  <v-container>
-    <v-layout column>
-      <v-flex>
-        <v-text-field v-model="form.login" label="ชื่อผู้ใช้"/>
-      </v-flex>
-      <v-flex>
-        <v-text-field v-model="form.pass" label="รหัสผ่าน"/>
-      </v-flex>
-      <v-flex>
-        <v-btn color="primary" @click="doLogin">เข้าสู่ระบบ</v-btn>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <div>
+    <v-card>
+      <v-container fluid grid-list-md>
+        <v-layout row wrap>
+          <v-flex
+            v-for="card in cards"
+            v-bind="{ [`xs${card.flex}`]: true }"
+            :key="card.title"
+          >
+            <v-card>
+              <v-card-media
+                :src="card.src"
+                height="200px"
+              >
+                <v-container fill-height fluid>
+                  <v-layout fill-height>
+                    <v-flex xs12 align-end flexbox>
+                      <span class="headline back--text" v-text="card.title"/>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-card-media>
+              <v-card-actions>
+                <v-spacer/>
+                <v-btn icon>
+                  <v-btn color="error" class="center">Click</v-btn>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-card>
+  </div>
+
 </template>
 <script>
-let blankForm = {
-  login: '',
-  pass: '',
-}
-
 export default {
-  layout: 'public',
-  data() {
-    return {
-      form: JSON.parse(JSON.stringify(blankForm)),
-    }
-  },
+  data: () => ({
+    cards: [
+      { title: 'Student', src: '/images/cards/student.jpg', flex: 12 },
+      { title: 'Motorcycle', src: '/images/cards/bye01.jpg', flex: 6},
+      { title: 'Car', src: '/images/cards/car.jpg', flex: 6 },
+    ],
+  }),
   methods: {
-    async doLogin() {
-      let res = await this.$http.post('/login', this.form)
-      if (!res.data.ok) {
-        // TODO: login ไม่สำเร็จ
-        return
-      }
-      console.log('login สำเร็จ')
-      // 1. จำ user/login
-      window.sessionStorage.setItem('user', JSON.stringify(res.data.user))
-      // 2. ไปหน้า home
-      this.$router.push('/home')
+    gotoAbout() {
+      this.$router.replace('/about')
+      this.$router.go(-1)
     },
   },
 }
