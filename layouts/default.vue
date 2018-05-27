@@ -55,10 +55,10 @@ export default {
   data: () => ({
 
     items: [
-      { title: 'Home', icon: 'home', path: '/'},
-      { title: 'Login', icon: 'https', path: '/login'},
-      { title: 'Register', icon: 'perm_identity', path: '/register'},
-      { title: 'About', icon: 'perm_contact_calendar', path: '/about'},
+      { title: 'Home', icon: 'home', path: '/' },
+      { title: 'Login', icon: 'https', path: '/login' },
+      { title: 'Register', icon: 'perm_identity', path: '/register' },
+      { title: 'About', icon: 'perm_contact_calendar', path: '/about' },
     ],
     icons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram'],
   }),
@@ -83,12 +83,13 @@ export default {
   },
 
   created() {
-    //  let user = window.sessionStorage.getItem('user')
+    // let user = window.sessionStorage.getItem('user')
     //  if (!user){
     //    return this.$router.replace('/')
     //  }
     //  this.user = JSON.parse(user)
     // this.$store.dispatch('getStudents')
+    this.$store.dispatch('loadUser')
   },
 
   mounted() {

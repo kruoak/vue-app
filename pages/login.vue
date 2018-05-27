@@ -25,7 +25,7 @@
                 />
               </v-flex>
               <v-flex>
-                <v-btn color="error" @click="dologin">Login</v-btn>
+                <v-btn color="error" @click="doLogin">Login</v-btn>
               </v-flex>
               <v-layout>
                 <v-flex>
@@ -80,7 +80,20 @@ export default {
     }
   },
   methods: {
-    async dologin() {
+  //   async dologin() {
+  //     let res = await this.$http.post('/login', this.form)
+  //     if (!res.data.ok) {
+  //       // TODO: login ไม่สำเร็จ
+  //       return
+  //     }
+  //     console.log('login สำเร็จ')
+  //     // 1. จำ user/login
+  //     window.localStorage.setItem('user', JSON.stringify(res.data.user))
+  //     // 2. ไปหน้า home
+  //     this.$router.push('/home')
+  //   },
+  // },
+    async doLogin() {
       let res = await this.$http.post('/login', this.form)
       if (!res.data.ok) {
         // TODO: login ไม่สำเร็จ
@@ -88,7 +101,7 @@ export default {
       }
       console.log('login สำเร็จ')
       // 1. จำ user/login
-      window.localStorage.setItem('user', JSON.stringify(res.data.user))
+      window.sessionStorage.setItem('user', JSON.stringify(res.data.user))
       // 2. ไปหน้า home
       this.$router.push('/home')
     },

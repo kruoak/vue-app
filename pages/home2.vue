@@ -56,7 +56,7 @@ export default {
     data () {
       return {
         items: [
-          { header: 'รายชื่อสมาชิก กลุ่มที่ 3' },
+          { header: 'Today' },
           { avatar: './images/teacher/T1.jpg', title: 'นายสมิทธ์  สุขขี', subtitle: "<span class='text--primary'>ออกแบบและพัฒนา" },
           { divider: true, inset: true },
           { avatar: './images/teacher/T2.jpg', title: 'นายอลงกรณ์  ภูคงคา ', subtitle: "<span class='text--primary'>ออกแบบและพัฒนา" },
